@@ -20,11 +20,6 @@ const userSchema = new Schema({
     required: true,
     minlength: 6
   },
-  name: {
-    type: String,
-    index: true,
-    trim: true
-  },
   role: {
     type: String,
     enum: roles,
@@ -42,10 +37,6 @@ userSchema.path('email').set(function (email) {
   if (!this.picture || this.picture.indexOf('https://gravatar.com') === 0) {
     const hash = crypto.createHash('md5').update(email).digest('hex')
     this.picture = `https://gravatar.com/avatar/${hash}?d=identicon`
-  }
-
-  if (!this.name) {
-    this.name = email.replace(/^(.+)@.+$/, '$1')
   }
 
   return email
@@ -66,7 +57,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     let view = {}
-    let fields = ['id', 'name', 'picture']
+    let fields = ['id', 'email', 'picture']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
@@ -86,7 +77,7 @@ userSchema.statics = {
   roles
 }
 
-userSchema.plugin(mongooseKeywords, { paths: ['email', 'name'] })
+userSchema.plugin(mongooseKeywords, { paths: ['email'] })
 
 const model = mongoose.model('User', userSchema)
 
