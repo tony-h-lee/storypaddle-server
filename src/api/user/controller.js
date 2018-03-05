@@ -24,22 +24,22 @@ export const showMe = ({ user }, res) =>
   res.json(user.view(true))
 
 export const create = ({ bodymen: { body } }, res, next) =>
-  User.create(body)
-    .then(user => {
-      sign(user.id)
-        .then((token) => ({ token, user: user.view(true) }))
-        .then(success(res, 201))
-    })
-    .catch((err) => {
-      /* istanbul ignore else */
-      if (err.name === 'MongoError' && err.code === 11000) {
+  User.find({email: body.email})
+    .count((err, count) => {
+      if (err) res.status(401).end()
+      if (count == 0) {
+        User.create(body)
+          .then(user => {
+            sign(user.id)
+              .then((token) => ({ token, user: user.view(true) }))
+              .then(success(res, 201))
+          })
+      } else {
         res.status(409).json({
           valid: false,
           param: 'email',
           message: 'email already registered'
         })
-      } else {
-        next(err)
       }
     })
 

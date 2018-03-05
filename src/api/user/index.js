@@ -52,8 +52,7 @@ router.get('/:id',
  * @api {post} /users Create user
  * @apiName CreateUser
  * @apiGroup User
- * @apiPermission master
- * @apiParam {String} access_token Master access_token.
+ * @apiPermission public
  * @apiParam {String} email User's email.
  * @apiParam {String{6..}} password User's password.
  * @apiParam {String} [name] User's name.
@@ -65,7 +64,6 @@ router.get('/:id',
  * @apiError 409 Email already registered.
  */
 router.post('/',
-  master(),
   body({ email, password, name, picture, role }),
   create)
 
