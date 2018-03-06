@@ -13,13 +13,13 @@ export const create = ({ bodymen: { body: { email, link } } }, res, next) =>
       link = `${link.replace(/\/$/, '')}/${token}`
       const content = `
         Hey, ${user.name}.<br><br>
-        You requested a new password for your bladeseeker-server account.<br>
+        You requested a new password for your NobleLoot account.<br>
         Please use the following link to set a new password. It will expire in 1 hour.<br><br>
         <a href="${link}">${link}</a><br><br>
-        If you didn't make this request then you can safely ignore this email. :)<br><br>
-        &mdash; bladeseeker-server Team
+        If you didn't make this request then you can safely ignore this email. <br><br>
+        &mdash; NobleLoot Team
       `
-      return sendMail({ toEmail: email, subject: 'bladeseeker-server - Password Reset', content })
+      return sendMail({ toEmail: email, subject: 'NobleLoot - Password Reset', content })
     })
     .then((response) => response ? res.status(response.statusCode).end() : null)
     .catch(next)

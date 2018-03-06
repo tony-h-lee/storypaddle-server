@@ -30,6 +30,6 @@ const router = new Router()
  */
 router.use('/users', user)
 router.use('/auth', auth)
-router.use('/password-resets', passwordReset)
+router.use('/password-reset', passwordReset)
 
 export default router
