@@ -25,7 +25,7 @@ const config = {
     port: process.env.PORT || 9000,
     ip: process.env.IP || '0.0.0.0',
     apiRoot: process.env.API_ROOT || '/api',
-    defaultEmail: 'no-reply@bladeseeker-server.com',
+    defaultEmail: 'no-reply@nobleloot.com',
     sendgridKey: requireProcessEnv('SENDGRID_KEY'),
     masterKey: requireProcessEnv('MASTER_KEY'),
     jwtSecret: requireProcessEnv('JWT_SECRET'),
@@ -39,7 +39,7 @@ const config = {
   },
   test: {
     mongo: {
-      uri: 'mongodb://localhost/bladeseeker-server-test',
+      uri: 'mongodb://localhost/nobleloot-server-test',
       options: {
         debug: false
       }
@@ -47,7 +47,7 @@ const config = {
   },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/bladeseeker-server-dev',
+      uri: 'mongodb://localhost/nobleloot-server-dev',
       options: {
         debug: true
       }
@@ -57,7 +57,7 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/bladeseeker-server'
+      uri: process.env.MONGODB_URI || 'mongodb://localhost/nobleloot-server'
     }
   }
 }

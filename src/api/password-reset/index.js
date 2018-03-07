@@ -9,7 +9,7 @@ const router = new Router()
 const { email, password } = schema.tree
 
 /**
- * @api {post} /password-resets Send email
+ * @api {post} /password-reset Send email
  * @apiName SendPasswordReset
  * @apiGroup PasswordReset
  * @apiParam {String} email Email address to receive the password reset token.
