@@ -1,6 +1,7 @@
 import { success, notFound } from '../../services/response/'
 import { sendMail } from '../../services/sendgrid'
 import { PasswordReset } from '.'
+import { sign } from '../../services/jwt'
 import { User } from '../user'
 
 export const create = ({ bodymen: { body: { email, link } } }, res, next) =>
@@ -43,8 +44,10 @@ export const update = ({ params: { token }, bodymen: { body: { password } } }, r
       const { user } = reset
       return user.set({ password }).save()
         .then(() => PasswordReset.remove({ user }))
-        .then(() => user.view(true))
+        .then(() => sign(user.id)
+          .then((token) => ({ token, user: user.view() }))
+          .then(success(res, 201))
+          .catch(next))
     })
-    .then(success(res))
     .catch(next)
 }
