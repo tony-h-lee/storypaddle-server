@@ -15,14 +15,14 @@ export const create = ({ bodymen: { body: { email, link } } }, res, next) =>
       link = `${link.replace(/\/$/, '')}/${token}`
       link = serverLink+link;
       const content = `
-        You requested a new password for your NobleLoot account.<br><br>
+        You requested a new password for your Storypaddle account.<br><br>
         
         Please use the following link to set a new password. It will expire in 1 hour.<br><br>
         <a href="${link}">${link}</a><br><br>
         If you didn't make this request then you can safely ignore this email. <br><br>
-        &mdash; NobleLoot Team
+        &mdash; Storypaddle Team
       `
-      return sendMail({ toEmail: email, subject: 'NobleLoot - Password Reset', content })
+      return sendMail({ toEmail: email, subject: 'Storypaddle - Password Reset', content })
     })
     .then((response) => response ? res.status(response.statusCode).json(response.body) : res.status(400).end())
     .catch(next)
