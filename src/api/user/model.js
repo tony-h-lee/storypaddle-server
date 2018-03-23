@@ -34,6 +34,12 @@ const userSchema = new Schema({
   picture: {
     type: String,
     trim: true
+  },
+  ownedNarratives: {
+    type: Array
+  },
+  participatingNarratives: {
+    type: Array
   }
 }, {
   timestamps: true
