@@ -7,20 +7,22 @@ const narrativesSchema = new Schema({
     required: true
   },
   title: {
-    type: String
+    type: String,
+    required: true,
   },
-  description: {
-    type: String
+  synopsis: {
+    type: String,
+    required: true,
   },
   genre: {
-    type: String
+    type: String,
+    required: true,
   },
   explicit: {
-    type: String
+    type: Boolean,
+    default: false,
   },
-  roles: {
-    type: Array
-  }
+  roles: [{}],
 }, {
   timestamps: true,
   toJSON: {

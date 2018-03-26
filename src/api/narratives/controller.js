@@ -1,11 +1,12 @@
 import { success, notFound, authorOrAdmin } from '../../services/response/'
 import { Narratives } from '.'
 
-export const create = ({ user, bodymen: { body } }, res, next) =>
-  Narratives.create({ ...body, author: user })
+export const create = ({ user, bodymen: { body } }, res, next) => {
+  return Narratives.create({...body, author: user.id})
     .then((narratives) => narratives.view(true))
     .then(success(res, 201))
     .catch(next)
+}
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Narratives.count(query)

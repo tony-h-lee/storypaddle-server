@@ -7,7 +7,7 @@ import { schema } from './model'
 export Narratives, { schema } from './model'
 
 const router = new Router()
-const { title, description, genre, explicit, roles } = schema.tree
+const { title, synopsis, genre, explicit, roles } = schema.tree
 
 /**
  * @api {post} /narratives Create narratives
@@ -16,7 +16,7 @@ const { title, description, genre, explicit, roles } = schema.tree
  * @apiPermission user
  * @apiParam {String} access_token user access token.
  * @apiParam title Narratives's title.
- * @apiParam description Narratives's description.
+ * @apiParam synopsis Narratives's synopsis.
  * @apiParam genre Narratives's genre.
  * @apiParam explicit Narratives's explicit.
  * @apiParam roles Narratives's roles.
@@ -27,7 +27,7 @@ const { title, description, genre, explicit, roles } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ title, description, genre, explicit, roles }),
+  body({ title, synopsis, genre, explicit, roles: [Object] }),
   create)
 
 /**
@@ -61,7 +61,7 @@ router.get('/:id',
  * @apiPermission user
  * @apiParam {String} access_token user access token.
  * @apiParam title Narratives's title.
- * @apiParam description Narratives's description.
+ * @apiParam synopsis Narratives's synopsis.
  * @apiParam genre Narratives's genre.
  * @apiParam explicit Narratives's explicit.
  * @apiParam roles Narratives's roles.
@@ -72,7 +72,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ title, description, genre, explicit, roles }),
+  body({ title, synopsis, genre, explicit, roles: [Object] }),
   update)
 
 /**
