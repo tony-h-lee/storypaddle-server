@@ -11,7 +11,7 @@ const setRoleUsers = (roles, userID) => (
 )
 
 export const create = ({ user, bodymen: { body } }, res, next) => {
-
+  console.log(body)
   // Set the first role as the creating user and the rest of the roles
   // with empty users
   body.roles = setRoleUsers(body.roles, user.id);
