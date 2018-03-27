@@ -22,7 +22,10 @@ const narrativesSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  roles: [{}],
+  roles: {
+    type: [],
+    validate: [minRolesRequired, 'Narrative requires at least 2 roles']
+  },
 }, {
   timestamps: true,
   toJSON: {
@@ -30,6 +33,10 @@ const narrativesSchema = new Schema({
     transform: (obj, ret) => { delete ret._id }
   }
 })
+
+function minRolesRequired(val) {
+  return val.length >= 2;
+}
 
 narrativesSchema.methods = {
   view (full) {

@@ -1,7 +1,18 @@
 import { success, notFound, authorOrAdmin } from '../../services/response/'
 import { Narratives } from '.'
 
+const setRoleUsers = (roles, userID) => (
+  roles.map((role, index) => {
+    if (index === 0) role.user = userID
+    else role.user = ""
+    return role
+    }
+  )
+)
+
 export const create = ({ user, bodymen: { body } }, res, next) => {
+  body.roles = setRoleUsers(body.roles, user.id);
+  console.log(body.roles)
   return Narratives.create({...body, author: user.id})
     .then((narratives) => narratives.view(true))
     .then(success(res, 201))
