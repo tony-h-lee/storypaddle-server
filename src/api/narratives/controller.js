@@ -11,8 +11,10 @@ const setRoleUsers = (roles, userID) => (
 )
 
 export const create = ({ user, bodymen: { body } }, res, next) => {
+
+  // Set the first role as the creating user and the rest of the roles
+  // with empty users
   body.roles = setRoleUsers(body.roles, user.id);
-  console.log(body.roles)
   return Narratives.create({...body, author: user.id})
     .then((narratives) => narratives.view(true))
     .then(success(res, 201))
