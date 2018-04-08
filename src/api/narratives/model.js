@@ -45,6 +45,7 @@ narrativesSchema.methods = {
       id: this.id,
       author: this.author.view(),
       title: this.title,
+      synopsis: this.synopsis,
       description: this.description,
       genre: this.genre,
       explicit: this.explicit,

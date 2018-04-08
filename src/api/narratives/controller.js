@@ -11,7 +11,6 @@ const setRoleUsers = (roles, userID) => (
 )
 
 export const create = ({ user, bodymen: { body } }, res, next) => {
-  console.log(body)
   // Set the first role as the creating user and the rest of the roles
   // with empty users
   body.roles = setRoleUsers(body.roles, user.id);
@@ -35,7 +34,6 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 
 export const show = ({ params }, res, next) =>
   Narratives.findById(params.id)
-    .populate('author')
     .then(notFound(res))
     .then((narratives) => narratives ? narratives.view() : null)
     .then(success(res))
@@ -50,6 +48,24 @@ export const update = ({ user, bodymen: { body }, params }, res, next) =>
     .then((narratives) => narratives ? narratives.view(true) : null)
     .then(success(res))
     .catch(next)
+
+export const updateRole = ({ user, body, params }, res, next) =>
+{
+  console.log(body)
+  return Narratives.findById(params.id)
+    .then(notFound(res))
+    .then(authorOrAdmin(res, user, 'author'))
+    .then((narratives) => narratives ? Object.assign(narratives, ...narratives, { roles: Object.assign(narratives.roles,
+      narratives.roles.map((role) => {
+        if (role.name === body.name) role.user = user.id;
+        return role
+      })
+      )}).save() : null)
+    .then((narratives) => narratives ? narratives.view(true) : null)
+    .then(success(res))
+    .catch(next)
+}
+
 
 export const destroy = ({ user, params }, res, next) =>
   Narratives.findById(params.id)

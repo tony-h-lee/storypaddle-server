@@ -2,12 +2,12 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, updateRole } from './controller'
 import { schema } from './model'
 export Narratives, { schema } from './model'
 
 const router = new Router()
-const { title, synopsis, genre, explicit, roles } = schema.tree
+const { title, synopsis, genre, explicit } = schema.tree
 
 /**
  * @api {post} /narratives Create narratives
@@ -74,6 +74,23 @@ router.put('/:id',
   token({ required: true }),
   body({ title, synopsis, genre, explicit, roles: [Object] }),
   update)
+
+
+/**
+ * @api {put} /narratives/roles/:id Update narrative roles
+ * @apiName UpdateNarratives
+ * @apiGroup Narratives
+ * @apiPermission user
+ * @apiParam {String} access_token user access token.
+ * @apiParam role The role name.
+ * @apiSuccess {Object} user id and role name.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Narratives not found.
+ * @apiError 401 user access only.
+ */
+router.put('/roles/:id',
+  token({ required: true }),
+  updateRole)
 
 /**
  * @api {delete} /narratives/:id Delete narratives
