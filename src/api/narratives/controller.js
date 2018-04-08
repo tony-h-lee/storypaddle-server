@@ -13,7 +13,10 @@ const setRoleUsers = (roles, userID) => (
 export const create = ({ user, bodymen: { body } }, res, next) => {
   // Set the first role as the creating user and the rest of the roles
   // with empty users
-  body.roles = setRoleUsers(body.roles, user.id);
+  let nameArray = body.roles.map((role) => role.name)
+  if((new Set(nameArray)).size !== nameArray.length)
+    return res.status(400).json({"message": "You cannot have duplicate role names."})
+  body.roles = setRoleUsers(body.roles, user.id)
   return Narratives.create({...body, author: user.id})
     .then((narratives) => narratives.view(true))
     .then(success(res, 201))
@@ -49,18 +52,25 @@ export const update = ({ user, bodymen: { body }, params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const updateRole = ({ user, body, params }, res, next) =>
-{
+export const updateRole = ({ user, body, params }, res, next) => {
   console.log(body)
   return Narratives.findById(params.id)
     .then(notFound(res))
     .then(authorOrAdmin(res, user, 'author'))
-    .then((narratives) => narratives ? Object.assign(narratives, ...narratives, { roles: Object.assign(narratives.roles,
-      narratives.roles.map((role) => {
-        if (role.name === body.name) role.user = user.id;
-        return role
-      })
-      )}).save() : null)
+    .then((narratives) => {
+      // Check if user already has a role in narrative
+      if (narratives.roles.some((role) => role.user === user.id)) {
+        return res.status(400).end()
+      }
+      return narratives ? Object.assign(narratives, ...narratives, {
+          roles: Object.assign(narratives.roles,
+            narratives.roles.map((role) => {
+              if (role.name === body.name) role.user = user.id;
+              return role
+            })
+          )
+        }).save() : null
+    })
     .then((narratives) => narratives ? narratives.view(true) : null)
     .then(success(res))
     .catch(next)
