@@ -15,7 +15,7 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
   // with empty users
   let nameArray = body.roles.map((role) => role.name)
   if((new Set(nameArray)).size !== nameArray.length)
-    return res.status(400).json({"message": "You cannot have duplicate role names."})
+    return res.status(400).end()
   body.roles = setRoleUsers(body.roles, user.id)
   return Narratives.create({...body, author: user.id})
     .then((narratives) => narratives.view(true))
