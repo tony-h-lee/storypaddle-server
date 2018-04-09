@@ -1,5 +1,20 @@
 import mongoose, { Schema } from 'mongoose'
 
+export const Roles = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  synopsis: {
+    type: String,
+    required: true,
+  },
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User',
+  },
+})
+
 const narrativesSchema = new Schema({
   author: {
     type: Schema.ObjectId,
@@ -23,7 +38,7 @@ const narrativesSchema = new Schema({
     default: false,
   },
   roles: {
-    type: [],
+    type: [Roles],
     validate: [minRolesRequired, 'Narrative requires at least 2 roles']
   },
 }, {

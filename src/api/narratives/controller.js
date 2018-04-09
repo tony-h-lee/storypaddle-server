@@ -1,10 +1,11 @@
 import { success, notFound, authorOrAdmin } from '../../services/response/'
+import mongoose from 'mongoose'
 import { Narratives } from '.'
 
 const setRoleUsers = (roles, userID) => (
   roles.map((role, index) => {
-    if (index === 0) role.user = userID
-    else role.user = ""
+    if (index === 0) role.user = new mongoose.Types.ObjectId(userID)
+    else role.user = null
     return role
     }
   )
@@ -53,23 +54,23 @@ export const update = ({ user, bodymen: { body }, params }, res, next) =>
     .catch(next)
 
 export const updateRole = ({ user, body, params }, res, next) => {
-  console.log(body)
   return Narratives.findById(params.id)
     .then(notFound(res))
-    .then(authorOrAdmin(res, user, 'author'))
     .then((narratives) => {
       // Check if user already has a role in narrative
-      if (narratives.roles.some((role) => role.user === user.id)) {
-        return res.status(400).end()
+      if (narratives.roles.some((role) => {
+          if(role.user) return role.user.equals(user.id)
+          return false
+        })) {
+        res.status(400).end()
+        return false
       }
-      return narratives ? Object.assign(narratives, ...narratives, {
-          roles: Object.assign(narratives.roles,
-            narratives.roles.map((role) => {
-              if (role.name === body.name) role.user = user.id;
-              return role
-            })
-          )
-        }).save() : null
+      return narratives ? Object.assign(narratives, {
+          ...narratives, roles: Object.assign(narratives.roles, narratives.roles.map((role) => {
+            if (role.id === body.roleId) role.user = user.id;
+            return role;
+          }))
+      }).save() : null
     })
     .then((narratives) => narratives ? narratives.view(true) : null)
     .then(success(res))

@@ -3,7 +3,7 @@ import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
 import { create, index, show, update, destroy, updateRole } from './controller'
-import { schema } from './model'
+import { schema, Roles } from './model'
 export Narratives, { schema } from './model'
 
 const router = new Router()
@@ -72,7 +72,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ title, synopsis, genre, explicit, roles: [Object] }),
+  body({ title, synopsis, genre, explicit, roles: [Roles] }),
   update)
 
 
