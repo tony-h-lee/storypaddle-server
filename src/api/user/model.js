@@ -38,7 +38,7 @@ const userSchema = new Schema({
   ownedNarratives: {
     type: Array
   },
-  participatingNarratives: {
+  joinedNarratives: {
     type: Array
   }
 }, {
@@ -69,7 +69,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     let view = {}
-    let fields = ['id', 'email', 'picture', 'accountType', ]
+    let fields = ['id', 'email', 'picture', 'accountType', 'ownedNarratives', 'joinedNarratives' ]
 
     if (full) {
       fields = [...fields, 'createdAt', 'role', ]

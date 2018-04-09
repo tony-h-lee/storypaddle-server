@@ -2,9 +2,11 @@ import { success, notFound, authorOrAdmin } from '../../services/response/'
 import mongoose from 'mongoose'
 import { Narratives } from '.'
 
-const setRoleUsers = (roles, userID) => (
+const setRoleUsers = (roles, user) => (
   roles.map((role, index) => {
-    if (index === 0) role.user = new mongoose.Types.ObjectId(userID)
+    if (index === 0) {
+      role.user = new mongoose.Types.ObjectId(user.id)
+    }
     else role.user = null
     return role
     }
@@ -17,9 +19,13 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
   let nameArray = body.roles.map((role) => role.name)
   if((new Set(nameArray)).size !== nameArray.length)
     return res.status(400).end()
-  body.roles = setRoleUsers(body.roles, user.id)
+  body.roles = setRoleUsers(body.roles, user)
   return Narratives.create({...body, author: user.id})
-    .then((narratives) => narratives.view(true))
+    .then((narratives) => {
+      user.ownedNarratives.push(narratives.id)
+      user.save()
+      return narratives.view(true)
+    })
     .then(success(res, 201))
     .catch(next)
 }
