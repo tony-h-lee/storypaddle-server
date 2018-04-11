@@ -23,6 +23,11 @@ export const show = ({ params }, res, next) =>
 export const showMe = ({ user }, res) =>
   res.json(user.view(true))
 
+export const showJoinedNarratives = ({ user }, res) =>
+  res.json(user
+    .populate('joinedNarratives')
+    .view(true))
+
 export const create = ({ bodymen: { body } }, res, next) =>
   User.find({email: body.email})
     .count((err, count) => {

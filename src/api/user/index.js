@@ -1,8 +1,8 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { password as passwordAuth, master, token } from '../../services/passport'
-import { index, showMe, show, create, update, updatePassword, destroy } from './controller'
+import { password as passwordAuth, token } from '../../services/passport'
+import { index, showMe, show, create, update, updatePassword, destroy, showJoinedNarratives } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
@@ -36,6 +36,19 @@ router.get('/',
 router.get('/me',
   token({ required: true }),
   showMe)
+
+
+/**
+ * @api {get} /users/me/joined Retrieve current user's joined narratives
+ * @apiName RetrieveCurrentUserJoinedNarratives
+ * @apiGroup User
+ * @apiPermission user
+ * @apiParam {String} access_token User access_token.
+ * @apiSuccess {Object} user User's data.
+ */
+router.get('/me/joined',
+  token({ required: true }),
+  showJoinedNarratives)
 
 /**
  * @api {get} /users/:id Retrieve user
