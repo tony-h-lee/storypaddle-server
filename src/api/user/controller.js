@@ -30,6 +30,13 @@ export const showJoinedNarratives = ({ user }, res) =>
     .then((results) => results[0].joinedNarratives)
     .then(success(res))
 
+export const showOwnedNarratives = ({ user }, res) =>
+  User.find({ _id: user._id})
+    .select('ownedNarratives -_id')
+    .populate('ownedNarratives')
+    .then((results) => results[0].ownedNarratives)
+    .then(success(res))
+
 export const create = ({ bodymen: { body } }, res, next) =>
   User.find({email: body.email})
     .count((err, count) => {
