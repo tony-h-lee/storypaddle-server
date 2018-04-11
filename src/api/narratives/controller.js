@@ -22,7 +22,7 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
   body.roles = setRoleUsers(body.roles, user)
   return Narratives.create({...body, author: user.id})
     .then((narratives) => {
-      user.ownedNarratives.push(new mongoose.Types.ObjectId(narratives.id))
+      user.ownedNarratives.push(narratives._id)
       user.save()
       return narratives.view(true)
     })
@@ -72,7 +72,7 @@ export const updateRole = ({ user, body, params }, res, next) => {
         return false
       }
 
-      user.joinedNarratives.push(new mongoose.Types.ObjectId(narratives.id))
+      user.joinedNarratives.push(narratives._id)
       user.save()
 
       return narratives ? Object.assign(narratives, {

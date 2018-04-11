@@ -46,7 +46,7 @@ router.get('/me',
  * @apiParam {String} access_token User access_token.
  * @apiSuccess {Object} user User's data.
  */
-router.get('/me/joined',
+router.get('/me/joined/',
   token({ required: true }),
   showJoinedNarratives)
 

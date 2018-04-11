@@ -24,9 +24,11 @@ export const showMe = ({ user }, res) =>
   res.json(user.view(true))
 
 export const showJoinedNarratives = ({ user }, res) =>
-  res.json(user
+  User.find({ _id: user._id})
+    .select('joinedNarratives -_id')
     .populate('joinedNarratives')
-    .view(true))
+    .then((results) => results[0].joinedNarratives)
+    .then(success(res))
 
 export const create = ({ bodymen: { body } }, res, next) =>
   User.find({email: body.email})

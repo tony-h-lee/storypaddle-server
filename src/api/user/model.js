@@ -35,12 +35,12 @@ const userSchema = new Schema({
     type: String,
     trim: true
   },
-  ownedNarratives: {
-    type: [ {type: Schema.ObjectId, ref: 'Narratives'} ]
-  },
-  joinedNarratives: {
-    type: [ {type: Schema.ObjectId, ref: 'Narratives'} ]
-  }
+  ownedNarratives: [
+    { type: Schema.ObjectId, ref: 'Narratives' }
+  ],
+  joinedNarratives: [
+    { type: Schema.ObjectId, ref: 'Narratives' }
+  ],
 }, {
   timestamps: true
 })
