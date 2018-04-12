@@ -39,7 +39,7 @@ const config = {
   },
   test: {
     mongo: {
-      uri: 'mongodb://localhost/nobleloot-server-test',
+      uri: 'mongodb://localhost/storypaddle-server-test',
       options: {
         debug: false
       }
@@ -47,7 +47,7 @@ const config = {
   },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/nobleloot-server-dev',
+      uri: 'mongodb://localhost/storypaddle-server-dev',
       options: {
         debug: true
       }
@@ -57,7 +57,7 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/nobleloot-server'
+      uri: process.env.MONGODB_URI || 'mongodb://localhost/storypaddle-server'
     }
   }
 }
