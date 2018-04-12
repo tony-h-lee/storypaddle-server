@@ -27,6 +27,10 @@ export default (apiRoot, routes) => {
     app.use(morgan('dev'))
   }
 
+  if (env === 'development') {
+    require('./seed');
+  }
+
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
   app.use(apiRoot, routes)
