@@ -23,19 +23,21 @@ export const show = ({ params }, res, next) =>
 export const showMe = ({ user }, res) =>
   res.json(user.view(true))
 
-export const showJoinedNarratives = ({ user }, res) =>
+export const showJoinedNarratives = ({ user }, res, next) =>
   User.find({ _id: user._id})
     .select('joinedNarratives -_id')
     .populate('joinedNarratives')
-    .then((results) => results[0].joinedNarratives)
+    .then((results) => results[0].joinedNarratives.map((narrative) => narrative.view()))
     .then(success(res))
+    .catch(next)
 
-export const showOwnedNarratives = ({ user }, res) =>
+export const showOwnedNarratives = ({ user }, res, next) =>
   User.find({ _id: user._id})
     .select('ownedNarratives -_id')
     .populate('ownedNarratives')
-    .then((results) => results[0].ownedNarratives)
+    .then((results) => results[0].ownedNarratives.map((narrative) => narrative.view()))
     .then(success(res))
+    .catch(next)
 
 export const create = ({ bodymen: { body } }, res, next) =>
   User.find({email: body.email})
