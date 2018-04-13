@@ -84,7 +84,7 @@ router.put('/:id',
  * @apiParam {String} access_token user access token.
  * @apiParam role The role name.
  * @apiSuccess {Object} user id and role name.
- * @apiError {Object} 400 User already has another role in narrative
+ * @apiError {Object} 400 User already has another role in narrative if adding or is not in a narrative if removing
  * @apiError 404 Narratives not found.
  * @apiError 401 user access only.
  */

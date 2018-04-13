@@ -13,6 +13,11 @@ export const Roles = new Schema({
     type: Schema.ObjectId,
     ref: 'User',
   },
+}, {
+  toJSON: {
+    virtuals: true,
+    transform: (obj, ret) => { delete ret._id }
+  }
 })
 
 const narrativesSchema = new Schema({

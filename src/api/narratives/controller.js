@@ -60,33 +60,58 @@ export const update = ({ user, bodymen: { body }, params }, res, next) =>
     .catch(next)
 
 export const updateRole = ({ user, body, params }, res, next) => {
-  return Narratives.findById(params.id)
-    .then(notFound(res))
-    .then((narratives) => {
-      // Check if user already has a role in narrative
-      if (narratives.roles.some((role) => {
-          if(role.user) return role.user.equals(user.id)
+  if(body.add) {
+    return Narratives.findById(params.id)
+      .then(notFound(res))
+      .then((narratives) => {
+        // Check if user already has a role in narrative
+        if (narratives.roles.some((role) => {
+            if (role.user) return role.user.equals(user.id)
+            return false
+          })) {
+          res.status(400).end()
           return false
-        })) {
-        res.status(400).end()
-        return false
-      }
+        } else {
+          user.joinedNarratives.push(narratives.id)
+          user.save()
 
-      user.joinedNarratives.push(narratives._id)
-      user.save()
+          return narratives ? Object.assign(narratives, {
+              ...narratives, roles: Object.assign(narratives.roles, narratives.roles.map((role) => {
+                if (role.id === body.roleId) role.user = user.id;
+                return role;
+              }))
+            }).save() : null
+        }
+      })
+      .then(success(res, 204))
+      .catch(next)
+  } else {
+    return Narratives.findById(params.id)
+      .then(notFound(res))
+      .then((narratives) => {
+        // Check if user already has a role in narrative
+        if (narratives.roles.some((role) => {
+            if (role.user) return role.user.equals(user.id)
+            return false
+          })) {
+          user.joinedNarratives.remove(narratives.id)
+          user.save()
 
-      return narratives ? Object.assign(narratives, {
-          ...narratives, roles: Object.assign(narratives.roles, narratives.roles.map((role) => {
-            if (role.id === body.roleId) role.user = user.id;
-            return role;
-          }))
-      }).save() : null
-    })
-    .then((narratives) => narratives ? narratives.view(true) : null)
-    .then(success(res))
-    .catch(next)
+          return narratives ? Object.assign(narratives, {
+              ...narratives, roles: Object.assign(narratives.roles, narratives.roles.map((role) => {
+                if (role.user && role.user.equals(user.id)) return role.user = null;
+                return role;
+              }))
+            }).save() : null
+        } else {
+          res.status(404).end()
+          return false
+        }
+      })
+      .then(success(res, 204))
+      .catch(next)
+  }
 }
-
 
 export const destroy = ({ user, params }, res, next) =>
   Narratives.findById(params.id)
