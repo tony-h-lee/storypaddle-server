@@ -19,7 +19,7 @@ User.find({}).remove()
           Narrative.find({}).remove()
             .then(() => {
               Narrative.create({
-                author: users[0]._id,
+                author: users[1]._id,
                 title: 'The Last Marebender',
                 synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum tempor vehicula. Aenean sit amet ultricies mauris, vel tincidunt lacus. Phasellus elit erat, faucibus nec dignissim ac, sodales quis nisl. Nulla iaculis varius nunc, at consequat nulla tempor et. Maecenas justo turpis, eleifend quis augue non, sollicitudin tincidunt elit. Phasellus cursus velit eu erat placerat iaculis. Aenean suscipit dolor nec velit consectetur, a sagittis sem mollis. Morbi hendrerit mi varius, tincidunt tortor eget, bibendum nunc. In non ex imperdiet, pharetra tellus in, interdum nisi. Pellentesque vitae turpis et ligula gravida porta. Nunc vel ultricies quam. Donec in magna aliquet, dignissim enim sit amet, placerat ipsum. Donec mattis, justo ut ornare faucibus, risus ex lacinia lectus, in dapibus magna odio id lectus. \n\n Quisque volutpat at nulla sed sollicitudin. Cras suscipit leo lacus, ac lobortis lacus hendrerit eu. Curabitur egestas leo ac enim maximus finibus. Fusce venenatis vitae nisl sit amet feugiat. Vestibulum quis tortor non enim tempus finibus sed eu arcu. Sed luctus dui sapien, vitae laoreet risus consectetur vitae. In vestibulum a diam non sollicitudin. Vivamus a ultricies lectus. Aliquam id viverra enim. Integer tristique, lectus et iaculis pretium, felis dolor ornare nisl, id rhoncus leo lorem sed nibh. Vivamus et justo volutpat, maximus lectus vel, elementum diam.',
                 genre: 'Science Fiction',
@@ -28,7 +28,7 @@ User.find({}).remove()
                   {
                     name: 'Avon Barksdale',
                     synopsis: 'Duis aliquam nunc ut nibh suscipit porttitor. Quisque maximus eros ac nisi aliquet vehicula. Suspendisse eget urna nisl. Phasellus ultricies diam quam, et mattis ligula porttitor vitae. Sed vehicula velit lorem, id volutpat lectus vulputate vel. Integer facilisis faucibus ligula ac ullamcorper. Integer dapibus, nisl eget imperdiet pulvinar, enim massa mattis mi, aliquam porttitor ex erat at purus. Praesent euismod purus nec sapien semper, quis pharetra ligula rhoncus. Morbi in sagittis nisi. Aliquam erat volutpat. Integer ullamcorper lectus nulla. Aenean mattis maximus massa nec gravida. \n\nSed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante.',
-                    user: users[0]._id,
+                    user: users[1]._id,
                   },
                   {
                     name: 'Ivory Parter',
@@ -41,14 +41,14 @@ User.find({}).remove()
                   }
                 ]
               })
-                // .then((narrative) => {
-                //   User.findOne({_id: users[0]._id})
-                //     .then((user) => {
-                //       user.joinedNarratives.push(narrative.id)
-                //       user.save()
-                //       return
-                //     })
-                // })
+                .then((narrative) => {
+                  User.findOne({_id: users[1]._id})
+                    .then((user) => {
+                      user.ownedNarratives.push(narrative.id)
+                      user.save()
+                      return
+                    })
+                })
                 .then(() => {
                   console.log('finished populating narratives');
                 });

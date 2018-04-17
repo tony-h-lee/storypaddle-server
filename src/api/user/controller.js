@@ -35,7 +35,7 @@ export const showOwnedNarratives = ({ user }, res, next) =>
   User.find({ _id: user._id})
     .select('ownedNarratives -_id')
     .populate('ownedNarratives')
-    .then((results) => results[0].ownedNarratives.map((narrative) => narrative.view()))
+    .then((results) => results[0].ownedNarratives.map((narrative) => narrative.view(true)))
     .then(success(res))
     .catch(next)
 

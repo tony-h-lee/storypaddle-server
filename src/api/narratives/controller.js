@@ -116,7 +116,12 @@ export const updateRole = ({ user, body, params }, res, next) => {
 export const destroy = ({ user, params }, res, next) =>
   Narratives.findById(params.id)
     .then(notFound(res))
-    .then(authorOrAdmin(res, user, 'author'))
-    .then((narratives) => narratives ? narratives.remove() : null)
+    .then((narratives) => {
+      if(narratives && narratives.author.equals(user.id)) return narratives.remove()
+      else {
+        res.status(401).end()
+        return false
+      }
+    })
     .then(success(res, 204))
     .catch(next)
