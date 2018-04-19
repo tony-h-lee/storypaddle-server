@@ -72,7 +72,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ title, synopsis, genre, explicit, roles: [Roles] }),
+  body({ synopsis, roles: [Object] }),
   update)
 
 

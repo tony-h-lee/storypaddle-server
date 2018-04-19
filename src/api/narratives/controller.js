@@ -24,7 +24,7 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
     .then((narratives) => {
       user.ownedNarratives.push(narratives._id)
       user.save()
-      return narratives.view(true)
+      return narratives.view()
     })
     .then(success(res, 201))
     .catch(next)
@@ -51,11 +51,10 @@ export const show = ({ params }, res, next) =>
 
 export const update = ({ user, bodymen: { body }, params }, res, next) =>
   Narratives.findById(params.id)
-    .populate('author')
     .then(notFound(res))
     .then(authorOrAdmin(res, user, 'author'))
-    .then((narratives) => narratives ? Object.assign(narratives, body).save() : null)
-    .then((narratives) => narratives ? narratives.view(true) : null)
+    .then((narratives) => narratives ? Object.assign(narratives, {...narratives}, body).save() : null)
+    .then((narratives) => narratives ? narratives.view() : null)
     .then(success(res))
     .catch(next)
 
@@ -116,12 +115,7 @@ export const updateRole = ({ user, body, params }, res, next) => {
 export const destroy = ({ user, params }, res, next) =>
   Narratives.findById(params.id)
     .then(notFound(res))
-    .then((narratives) => {
-      if(narratives && narratives.author.equals(user.id)) return narratives.remove()
-      else {
-        res.status(401).end()
-        return false
-      }
-    })
+    .then(authorOrAdmin(res, user, 'author'))
+    .then((narratives) => narratives.remove())
     .then(success(res, 204))
     .catch(next)
