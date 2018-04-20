@@ -1,4 +1,4 @@
-import { success, notFound, authorOrAdmin } from '../../services/response/'
+import { success, notFound, authorOrAdmin, validCast } from '../../services/response/'
 import mongoose from 'mongoose'
 import { Narratives } from '.'
 
@@ -27,7 +27,7 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
       return narratives.view()
     })
     .then(success(res, 201))
-    .catch(next)
+    .catch((err) => validCast(res, err, next))
 }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
@@ -40,14 +40,14 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch((err) => validCast(res, err, next))
 
 export const show = ({ params }, res, next) =>
   Narratives.findById(params.id)
     .then(notFound(res))
     .then((narratives) => narratives ? narratives.view() : null)
     .then(success(res))
-    .catch(next)
+    .catch((err) => validCast(res, err, next))
 
 export const update = ({ user, bodymen: { body }, params }, res, next) =>
   Narratives.findById(params.id)
@@ -56,7 +56,7 @@ export const update = ({ user, bodymen: { body }, params }, res, next) =>
     .then((narratives) => narratives ? Object.assign(narratives, {...narratives}, body).save() : null)
     .then((narratives) => narratives ? narratives.view() : null)
     .then(success(res))
-    .catch(next)
+    .catch((err) => validCast(res, err, next))
 
 export const updateRole = ({ user, body, params }, res, next) => {
   if(body.add) {
@@ -83,7 +83,7 @@ export const updateRole = ({ user, body, params }, res, next) => {
         }
       })
       .then(success(res, 204))
-      .catch(next)
+      .catch((err) => validCast(res, err, next))
   } else {
     return Narratives.findById(params.id)
       .then(notFound(res))
@@ -108,7 +108,7 @@ export const updateRole = ({ user, body, params }, res, next) => {
         }
       })
       .then(success(res, 204))
-      .catch(next)
+      .catch((err) => validCast(res, err, next))
   }
 }
 
@@ -118,4 +118,4 @@ export const destroy = ({ user, params }, res, next) =>
     .then(authorOrAdmin(res, user, 'author'))
     .then((narratives) => narratives.remove())
     .then(success(res, 204))
-    .catch(next)
+    .catch((err) => validCast(res, err, next))
