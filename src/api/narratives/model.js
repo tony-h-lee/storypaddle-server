@@ -80,6 +80,14 @@ narrativesSchema.methods = {
   }
 }
 
+narrativesSchema.pre('remove', function(next) {
+  mongoose.model('User').update(
+    {},
+    { $pull: { joinedNarratives: this.id}},
+    { multi: true },
+    next);
+});
+
 const model = mongoose.model('Narratives', narrativesSchema)
 
 export const schema = model.schema
