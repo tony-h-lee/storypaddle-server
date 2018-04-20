@@ -37,7 +37,6 @@ export const index = ({}, res, next) =>
   Narratives.paginate({
     limit: NARRATIVE_PAGE_LIMIT,
     paginatedField: "createdAt",
-    sortAscending: true,
     next: res.query ? res.query.next : ""
   })
     .then(success(res))
