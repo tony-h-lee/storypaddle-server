@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+const paginate = require('mongoose-cursor-paginate');
 
 export const Roles = new Schema({
   name: {
@@ -79,6 +80,8 @@ narrativesSchema.methods = {
     } : view
   }
 }
+
+narrativesSchema.plugin(paginate);
 
 narrativesSchema.pre('remove', function(next) {
   mongoose.model('User').update(

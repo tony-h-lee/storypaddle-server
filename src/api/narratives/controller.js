@@ -1,6 +1,9 @@
 import { success, notFound, authorOrAdmin, validCast } from '../../services/response/'
 import mongoose from 'mongoose'
+import * as paginate from 'mongoose-cursor-paginate'
 import { Narratives } from '.'
+
+const NARRATIVE_PAGE_LIMIT = 8;
 
 const setRoleUsers = (roles, user) => (
   roles.map((role, index) => {
@@ -30,17 +33,13 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
     .catch((err) => validCast(res, err, next))
 }
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  Narratives.count(query)
-    .then(count => Narratives.find(query, select, cursor)
-      .populate('author')
-      .then((narratives) => ({
-        count,
-        rows: narratives.map((narratives) => narratives.view())
-      }))
-    )
+export const index = ({}, res, next) =>
+  Narratives.paginate({
+    limit: NARRATIVE_PAGE_LIMIT,
+    next: res.query ? res.query.next : ""
+  })
     .then(success(res))
-    .catch((err) => validCast(res, err, next))
+    .catch(next)
 
 export const show = ({ params }, res, next) =>
   Narratives.findById(params.id)
