@@ -117,5 +117,8 @@ export const destroy = ({ user, params }, res, next) =>
     .then(notFound(res))
     .then(authorOrAdmin(res, user, 'author'))
     .then((narratives) => narratives.remove())
+    .then((narratives) =>
+      mongoose.model('User').update({}, { $pull: { joinedNarratives: narratives.id}})
+    )
     .then(success(res, 204))
     .catch((err) => validCast(res, err, next))

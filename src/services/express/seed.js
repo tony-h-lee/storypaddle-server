@@ -33,7 +33,7 @@ User.find({}).remove()
                   {
                     name: 'Ivory Parter',
                     synopsis: 'Sed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante. \n\nDonec lobortis venenatis elementum. Suspendisse potenti. In vestibulum rhoncus erat, quis aliquet est sollicitudin non. Donec rhoncus dolor ut mattis dignissim. Mauris eu facilisis ligula. Sed magna lorem, tincidunt at dui blandit, dictum placerat felis. Cras et posuere mi, vel euismod ipsum. Cras neque enim, consequat ac arcu sit amet, scelerisque sodales ante. Sed dui erat, fringilla non pellentesque non, faucibus vitae lectus. Pellentesque mauris felis, tincidunt sed faucibus sed, pharetra at dui. Sed pharetra tempor interdum. Praesent tempus pulvinar ipsum cursus faucibus.',
-                    // user: users[0]._id,
+                    user: users[2]._id,
                   },
                   {
                     name: 'General Peters',
@@ -45,6 +45,12 @@ User.find({}).remove()
                   User.findOne({_id: users[1]._id})
                     .then((user) => {
                       user.ownedNarratives.push(narrative.id)
+                      user.save()
+                      return
+                    })
+                  User.findOne({_id: users[2]._id})
+                    .then((user) => {
+                      user.joinedNarratives.push(narrative.id)
                       user.save()
                       return
                     })
