@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import * as paginate from 'mongoose-cursor-paginate'
 import { Narratives } from '.'
 
-const NARRATIVE_PAGE_LIMIT = 5;
+const NARRATIVE_PAGE_LIMIT = 10;
 
 const setRoleUsers = (roles, user) => (
   roles.map((role, index) => {
