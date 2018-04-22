@@ -71,11 +71,11 @@ narrativesSchema.methods = {
       genre: this.genre,
       explicit: this.explicit,
       roles: this.roles,
+      createdAt: this.createdAt,
     }
 
     return full ? {
       ...view,
-        createdAt: this.createdAt,
         updatedAt: this.updatedAt,
     } : view
   }

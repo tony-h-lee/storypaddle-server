@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import * as paginate from 'mongoose-cursor-paginate'
 import { Narratives } from '.'
 
-const NARRATIVE_PAGE_LIMIT = 8;
+const NARRATIVE_PAGE_LIMIT = 5;
 
 const setRoleUsers = (roles, user) => (
   roles.map((role, index) => {
@@ -33,14 +33,16 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
     .catch((err) => validCast(res, err, next))
 }
 
-export const index = ({}, res, next) =>
-  Narratives.paginate({
+export const index = ({ query }, res, next) => {
+ return Narratives.paginate({
     limit: NARRATIVE_PAGE_LIMIT,
     paginatedField: "createdAt",
-    next: res.query ? res.query.next : ""
+    next: query ? query.next : '',
   })
     .then(success(res))
     .catch(next)
+}
+
 
 export const show = ({ params }, res, next) =>
   Narratives.findById(params.id)

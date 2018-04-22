@@ -230,6 +230,168 @@ User.find({}).remove()
               },
             ]
           })
+          Narrative.create({
+            author: users[1]._id,
+            title: 'Lorem ipsum dolor',
+            synopsis: 'Nunc nec turpis in est hendrerit feugiat. Suspendisse tempus maximus leo. Vivamus elit lectus, faucibus sed metus sit amet, vestibulum vestibulum lacus. Ut maximus tempus libero, non faucibus leo luctus ut. Nam ex tellus, finibus at nulla a, efficitur convallis dui. Quisque euismod velit ac laoreet rutrum. Proin efficitur, tortor eget dictum luctus, mi dui imperdiet erat, nec aliquet nisl nisl id dui. Fusce id dictum erat. Aliquam erat volutpat. Vestibulum a viverra nisi, sit amet scelerisque leo. Sed consequat dapibus porta. Ut aliquam libero nec risus semper cursus. Vivamus fermentum vel urna et fringilla.',
+            genre: 'Fantasy',
+            explicit: true,
+            roles: [
+              {
+                name: 'Eva Green',
+                synopsis: 'Vestibulum vitae magna et neque posuere tincidunt in a diam. Nulla molestie quam sit amet nisi molestie finibus. Integer a justo eu justo iaculis ultricies viverra sed ligula. Donec nec bibendum dolor.\n\nCurabitur nisl erat, molestie in purus vitae, suscipit volutpat neque. Mauris pellentesque enim neque, id fermentum augue pretium ut. Praesent feugiat et nunc non tempor. Suspendisse convallis, tortor laoreet ullamcorper congue, elit nibh semper sem, sit amet pharetra ex enim at massa. Fusce sed dolor lobortis, molestie diam in, efficitur metus. Vivamus congue ipsum eget enim fermentum laoreet. Vivamus condimentum luctus ultrices. Duis mauris libero, interdum a augue quis, placerat sodales massa. Suspendisse non lectus dignissim, vehicula nunc eget, aliquet erat.',
+                user: users[1]._id,
+              },
+              {
+                name: 'Mackenzie Zie',
+                synopsis: 'Sed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante. \n\nDonec lobortis venenatis elementum. Suspendisse potenti. In vestibulum rhoncus erat, quis aliquet est sollicitudin non. Donec rhoncus dolor ut mattis dignissim. Mauris eu facilisis ligula. Sed magna lorem, tincidunt at dui blandit, dictum placerat felis. Cras et posuere mi, vel euismod ipsum. Cras neque enim, consequat ac arcu sit amet, scelerisque sodales ante. Sed dui erat, fringilla non pellentesque non, faucibus vitae lectus. Pellentesque mauris felis, tincidunt sed faucibus sed, pharetra at dui. Sed pharetra tempor interdum. Praesent tempus pulvinar ipsum cursus faucibus.',
+              },
+            ]
+          })
+          Narrative.create({
+            author: users[1]._id,
+            title: 'An Anime Fanfic',
+            synopsis: 'Nunc nec turpis in est hendrerit feugiat. Suspendisse tempus maximus leo. Vivamus elit lectus, faucibus sed metus sit amet, vestibulum vestibulum lacus. Ut maximus tempus libero, non faucibus leo luctus ut. Nam ex tellus, finibus at nulla a, efficitur convallis dui. Quisque euismod velit ac laoreet rutrum. Proin efficitur, tortor eget dictum luctus, mi dui imperdiet erat, nec aliquet nisl nisl id dui. Fusce id dictum erat. Aliquam erat volutpat. Vestibulum a viverra nisi, sit amet scelerisque leo. Sed consequat dapibus porta. Ut aliquam libero nec risus semper cursus. Vivamus fermentum vel urna et fringilla.',
+            genre: 'Fantasy',
+            explicit: true,
+            roles: [
+              {
+                name: 'Eva Green',
+                synopsis: 'Vestibulum vitae magna et neque posuere tincidunt in a diam. Nulla molestie quam sit amet nisi molestie finibus. Integer a justo eu justo iaculis ultricies viverra sed ligula. Donec nec bibendum dolor.\n\nCurabitur nisl erat, molestie in purus vitae, suscipit volutpat neque. Mauris pellentesque enim neque, id fermentum augue pretium ut. Praesent feugiat et nunc non tempor. Suspendisse convallis, tortor laoreet ullamcorper congue, elit nibh semper sem, sit amet pharetra ex enim at massa. Fusce sed dolor lobortis, molestie diam in, efficitur metus. Vivamus congue ipsum eget enim fermentum laoreet. Vivamus condimentum luctus ultrices. Duis mauris libero, interdum a augue quis, placerat sodales massa. Suspendisse non lectus dignissim, vehicula nunc eget, aliquet erat.',
+                user: users[1]._id,
+              },
+              {
+                name: 'Mackenzie Zie',
+                synopsis: 'Sed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante. \n\nDonec lobortis venenatis elementum. Suspendisse potenti. In vestibulum rhoncus erat, quis aliquet est sollicitudin non. Donec rhoncus dolor ut mattis dignissim. Mauris eu facilisis ligula. Sed magna lorem, tincidunt at dui blandit, dictum placerat felis. Cras et posuere mi, vel euismod ipsum. Cras neque enim, consequat ac arcu sit amet, scelerisque sodales ante. Sed dui erat, fringilla non pellentesque non, faucibus vitae lectus. Pellentesque mauris felis, tincidunt sed faucibus sed, pharetra at dui. Sed pharetra tempor interdum. Praesent tempus pulvinar ipsum cursus faucibus.',
+              },
+            ]
+          })
+          Narrative.create({
+            author: users[1]._id,
+            title: 'World War 2: Part II',
+            synopsis: 'Nunc nec turpis in est hendrerit feugiat. Suspendisse tempus maximus leo. Vivamus elit lectus, faucibus sed metus sit amet, vestibulum vestibulum lacus. Ut maximus tempus libero, non faucibus leo luctus ut. Nam ex tellus, finibus at nulla a, efficitur convallis dui. Quisque euismod velit ac laoreet rutrum. Proin efficitur, tortor eget dictum luctus, mi dui imperdiet erat, nec aliquet nisl nisl id dui. Fusce id dictum erat. Aliquam erat volutpat. Vestibulum a viverra nisi, sit amet scelerisque leo. Sed consequat dapibus porta. Ut aliquam libero nec risus semper cursus. Vivamus fermentum vel urna et fringilla.',
+            genre: 'Historical Fiction',
+            explicit: false,
+            roles: [
+              {
+                name: 'Eva Green',
+                synopsis: 'Vestibulum vitae magna et neque posuere tincidunt in a diam. Nulla molestie quam sit amet nisi molestie finibus. Integer a justo eu justo iaculis ultricies viverra sed ligula. Donec nec bibendum dolor.\n\nCurabitur nisl erat, molestie in purus vitae, suscipit volutpat neque. Mauris pellentesque enim neque, id fermentum augue pretium ut. Praesent feugiat et nunc non tempor. Suspendisse convallis, tortor laoreet ullamcorper congue, elit nibh semper sem, sit amet pharetra ex enim at massa. Fusce sed dolor lobortis, molestie diam in, efficitur metus. Vivamus congue ipsum eget enim fermentum laoreet. Vivamus condimentum luctus ultrices. Duis mauris libero, interdum a augue quis, placerat sodales massa. Suspendisse non lectus dignissim, vehicula nunc eget, aliquet erat.',
+                user: users[1]._id,
+              },
+              {
+                name: 'Mackenzie Zie',
+                synopsis: 'Sed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante. \n\nDonec lobortis venenatis elementum. Suspendisse potenti. In vestibulum rhoncus erat, quis aliquet est sollicitudin non. Donec rhoncus dolor ut mattis dignissim. Mauris eu facilisis ligula. Sed magna lorem, tincidunt at dui blandit, dictum placerat felis. Cras et posuere mi, vel euismod ipsum. Cras neque enim, consequat ac arcu sit amet, scelerisque sodales ante. Sed dui erat, fringilla non pellentesque non, faucibus vitae lectus. Pellentesque mauris felis, tincidunt sed faucibus sed, pharetra at dui. Sed pharetra tempor interdum. Praesent tempus pulvinar ipsum cursus faucibus.',
+              },
+            ]
+          })
+          Narrative.create({
+            author: users[1]._id,
+            title: 'The Legend of Zelda',
+            synopsis: 'Nunc nec turpis in est hendrerit feugiat. Suspendisse tempus maximus leo. Vivamus elit lectus, faucibus sed metus sit amet, vestibulum vestibulum lacus. Ut maximus tempus libero, non faucibus leo luctus ut. Nam ex tellus, finibus at nulla a, efficitur convallis dui. Quisque euismod velit ac laoreet rutrum. Proin efficitur, tortor eget dictum luctus, mi dui imperdiet erat, nec aliquet nisl nisl id dui. Fusce id dictum erat. Aliquam erat volutpat. Vestibulum a viverra nisi, sit amet scelerisque leo. Sed consequat dapibus porta. Ut aliquam libero nec risus semper cursus. Vivamus fermentum vel urna et fringilla.',
+            genre: 'Fantasy',
+            explicit: false,
+            roles: [
+              {
+                name: 'Eva Green',
+                synopsis: 'Vestibulum vitae magna et neque posuere tincidunt in a diam. Nulla molestie quam sit amet nisi molestie finibus. Integer a justo eu justo iaculis ultricies viverra sed ligula. Donec nec bibendum dolor.\n\nCurabitur nisl erat, molestie in purus vitae, suscipit volutpat neque. Mauris pellentesque enim neque, id fermentum augue pretium ut. Praesent feugiat et nunc non tempor. Suspendisse convallis, tortor laoreet ullamcorper congue, elit nibh semper sem, sit amet pharetra ex enim at massa. Fusce sed dolor lobortis, molestie diam in, efficitur metus. Vivamus congue ipsum eget enim fermentum laoreet. Vivamus condimentum luctus ultrices. Duis mauris libero, interdum a augue quis, placerat sodales massa. Suspendisse non lectus dignissim, vehicula nunc eget, aliquet erat.',
+                user: users[1]._id,
+              },
+              {
+                name: 'Mackenzie Zie',
+                synopsis: 'Sed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante. \n\nDonec lobortis venenatis elementum. Suspendisse potenti. In vestibulum rhoncus erat, quis aliquet est sollicitudin non. Donec rhoncus dolor ut mattis dignissim. Mauris eu facilisis ligula. Sed magna lorem, tincidunt at dui blandit, dictum placerat felis. Cras et posuere mi, vel euismod ipsum. Cras neque enim, consequat ac arcu sit amet, scelerisque sodales ante. Sed dui erat, fringilla non pellentesque non, faucibus vitae lectus. Pellentesque mauris felis, tincidunt sed faucibus sed, pharetra at dui. Sed pharetra tempor interdum. Praesent tempus pulvinar ipsum cursus faucibus.',
+              },
+            ]
+          })
+          Narrative.create({
+            author: users[1]._id,
+            title: 'Pirates of the Carribean',
+            synopsis: 'Nunc nec turpis in est hendrerit feugiat. Suspendisse tempus maximus leo. Vivamus elit lectus, faucibus sed metus sit amet, vestibulum vestibulum lacus. Ut maximus tempus libero, non faucibus leo luctus ut. Nam ex tellus, finibus at nulla a, efficitur convallis dui. Quisque euismod velit ac laoreet rutrum. Proin efficitur, tortor eget dictum luctus, mi dui imperdiet erat, nec aliquet nisl nisl id dui. Fusce id dictum erat. Aliquam erat volutpat. Vestibulum a viverra nisi, sit amet scelerisque leo. Sed consequat dapibus porta. Ut aliquam libero nec risus semper cursus. Vivamus fermentum vel urna et fringilla.',
+            genre: 'Fantasy',
+            explicit: true,
+            roles: [
+              {
+                name: 'Eva Green',
+                synopsis: 'Vestibulum vitae magna et neque posuere tincidunt in a diam. Nulla molestie quam sit amet nisi molestie finibus. Integer a justo eu justo iaculis ultricies viverra sed ligula. Donec nec bibendum dolor.\n\nCurabitur nisl erat, molestie in purus vitae, suscipit volutpat neque. Mauris pellentesque enim neque, id fermentum augue pretium ut. Praesent feugiat et nunc non tempor. Suspendisse convallis, tortor laoreet ullamcorper congue, elit nibh semper sem, sit amet pharetra ex enim at massa. Fusce sed dolor lobortis, molestie diam in, efficitur metus. Vivamus congue ipsum eget enim fermentum laoreet. Vivamus condimentum luctus ultrices. Duis mauris libero, interdum a augue quis, placerat sodales massa. Suspendisse non lectus dignissim, vehicula nunc eget, aliquet erat.',
+                user: users[1]._id,
+              },
+              {
+                name: 'Mackenzie Zie',
+                synopsis: 'Sed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante. \n\nDonec lobortis venenatis elementum. Suspendisse potenti. In vestibulum rhoncus erat, quis aliquet est sollicitudin non. Donec rhoncus dolor ut mattis dignissim. Mauris eu facilisis ligula. Sed magna lorem, tincidunt at dui blandit, dictum placerat felis. Cras et posuere mi, vel euismod ipsum. Cras neque enim, consequat ac arcu sit amet, scelerisque sodales ante. Sed dui erat, fringilla non pellentesque non, faucibus vitae lectus. Pellentesque mauris felis, tincidunt sed faucibus sed, pharetra at dui. Sed pharetra tempor interdum. Praesent tempus pulvinar ipsum cursus faucibus.',
+              },
+            ]
+          })
+          Narrative.create({
+            author: users[1]._id,
+            title: 'Harry Potter',
+            synopsis: 'Nunc nec turpis in est hendrerit feugiat. Suspendisse tempus maximus leo. Vivamus elit lectus, faucibus sed metus sit amet, vestibulum vestibulum lacus. Ut maximus tempus libero, non faucibus leo luctus ut. Nam ex tellus, finibus at nulla a, efficitur convallis dui. Quisque euismod velit ac laoreet rutrum. Proin efficitur, tortor eget dictum luctus, mi dui imperdiet erat, nec aliquet nisl nisl id dui. Fusce id dictum erat. Aliquam erat volutpat. Vestibulum a viverra nisi, sit amet scelerisque leo. Sed consequat dapibus porta. Ut aliquam libero nec risus semper cursus. Vivamus fermentum vel urna et fringilla.',
+            genre: 'Fantasy',
+            explicit: false,
+            roles: [
+              {
+                name: 'Eva Green',
+                synopsis: 'Vestibulum vitae magna et neque posuere tincidunt in a diam. Nulla molestie quam sit amet nisi molestie finibus. Integer a justo eu justo iaculis ultricies viverra sed ligula. Donec nec bibendum dolor.\n\nCurabitur nisl erat, molestie in purus vitae, suscipit volutpat neque. Mauris pellentesque enim neque, id fermentum augue pretium ut. Praesent feugiat et nunc non tempor. Suspendisse convallis, tortor laoreet ullamcorper congue, elit nibh semper sem, sit amet pharetra ex enim at massa. Fusce sed dolor lobortis, molestie diam in, efficitur metus. Vivamus congue ipsum eget enim fermentum laoreet. Vivamus condimentum luctus ultrices. Duis mauris libero, interdum a augue quis, placerat sodales massa. Suspendisse non lectus dignissim, vehicula nunc eget, aliquet erat.',
+                user: users[1]._id,
+              },
+              {
+                name: 'Mackenzie Zie',
+                synopsis: 'Sed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante. \n\nDonec lobortis venenatis elementum. Suspendisse potenti. In vestibulum rhoncus erat, quis aliquet est sollicitudin non. Donec rhoncus dolor ut mattis dignissim. Mauris eu facilisis ligula. Sed magna lorem, tincidunt at dui blandit, dictum placerat felis. Cras et posuere mi, vel euismod ipsum. Cras neque enim, consequat ac arcu sit amet, scelerisque sodales ante. Sed dui erat, fringilla non pellentesque non, faucibus vitae lectus. Pellentesque mauris felis, tincidunt sed faucibus sed, pharetra at dui. Sed pharetra tempor interdum. Praesent tempus pulvinar ipsum cursus faucibus.',
+              },
+            ]
+          })
+          Narrative.create({
+            author: users[1]._id,
+            title: 'Star Trek: The Finding',
+            synopsis: 'Nunc nec turpis in est hendrerit feugiat. Suspendisse tempus maximus leo. Vivamus elit lectus, faucibus sed metus sit amet, vestibulum vestibulum lacus. Ut maximus tempus libero, non faucibus leo luctus ut. Nam ex tellus, finibus at nulla a, efficitur convallis dui. Quisque euismod velit ac laoreet rutrum. Proin efficitur, tortor eget dictum luctus, mi dui imperdiet erat, nec aliquet nisl nisl id dui. Fusce id dictum erat. Aliquam erat volutpat. Vestibulum a viverra nisi, sit amet scelerisque leo. Sed consequat dapibus porta. Ut aliquam libero nec risus semper cursus. Vivamus fermentum vel urna et fringilla.',
+            genre: 'Science Fiction',
+            explicit: false,
+            roles: [
+              {
+                name: 'Eva Green',
+                synopsis: 'Vestibulum vitae magna et neque posuere tincidunt in a diam. Nulla molestie quam sit amet nisi molestie finibus. Integer a justo eu justo iaculis ultricies viverra sed ligula. Donec nec bibendum dolor.\n\nCurabitur nisl erat, molestie in purus vitae, suscipit volutpat neque. Mauris pellentesque enim neque, id fermentum augue pretium ut. Praesent feugiat et nunc non tempor. Suspendisse convallis, tortor laoreet ullamcorper congue, elit nibh semper sem, sit amet pharetra ex enim at massa. Fusce sed dolor lobortis, molestie diam in, efficitur metus. Vivamus congue ipsum eget enim fermentum laoreet. Vivamus condimentum luctus ultrices. Duis mauris libero, interdum a augue quis, placerat sodales massa. Suspendisse non lectus dignissim, vehicula nunc eget, aliquet erat.',
+                user: users[1]._id,
+              },
+              {
+                name: 'Mackenzie Zie',
+                synopsis: 'Sed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante. \n\nDonec lobortis venenatis elementum. Suspendisse potenti. In vestibulum rhoncus erat, quis aliquet est sollicitudin non. Donec rhoncus dolor ut mattis dignissim. Mauris eu facilisis ligula. Sed magna lorem, tincidunt at dui blandit, dictum placerat felis. Cras et posuere mi, vel euismod ipsum. Cras neque enim, consequat ac arcu sit amet, scelerisque sodales ante. Sed dui erat, fringilla non pellentesque non, faucibus vitae lectus. Pellentesque mauris felis, tincidunt sed faucibus sed, pharetra at dui. Sed pharetra tempor interdum. Praesent tempus pulvinar ipsum cursus faucibus.',
+              },
+            ]
+          })
+          Narrative.create({
+            author: users[1]._id,
+            title: 'One More For Good Luck',
+            synopsis: 'Nunc nec turpis in est hendrerit feugiat. Suspendisse tempus maximus leo. Vivamus elit lectus, faucibus sed metus sit amet, vestibulum vestibulum lacus. Ut maximus tempus libero, non faucibus leo luctus ut. Nam ex tellus, finibus at nulla a, efficitur convallis dui. Quisque euismod velit ac laoreet rutrum. Proin efficitur, tortor eget dictum luctus, mi dui imperdiet erat, nec aliquet nisl nisl id dui. Fusce id dictum erat. Aliquam erat volutpat. Vestibulum a viverra nisi, sit amet scelerisque leo. Sed consequat dapibus porta. Ut aliquam libero nec risus semper cursus. Vivamus fermentum vel urna et fringilla.',
+            genre: 'Historical Fiction',
+            explicit: false,
+            roles: [
+              {
+                name: 'Eva Green',
+                synopsis: 'Vestibulum vitae magna et neque posuere tincidunt in a diam. Nulla molestie quam sit amet nisi molestie finibus. Integer a justo eu justo iaculis ultricies viverra sed ligula. Donec nec bibendum dolor.\n\nCurabitur nisl erat, molestie in purus vitae, suscipit volutpat neque. Mauris pellentesque enim neque, id fermentum augue pretium ut. Praesent feugiat et nunc non tempor. Suspendisse convallis, tortor laoreet ullamcorper congue, elit nibh semper sem, sit amet pharetra ex enim at massa. Fusce sed dolor lobortis, molestie diam in, efficitur metus. Vivamus congue ipsum eget enim fermentum laoreet. Vivamus condimentum luctus ultrices. Duis mauris libero, interdum a augue quis, placerat sodales massa. Suspendisse non lectus dignissim, vehicula nunc eget, aliquet erat.',
+                user: users[1]._id,
+              },
+              {
+                name: 'Mackenzie Zie',
+                synopsis: 'Sed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante. \n\nDonec lobortis venenatis elementum. Suspendisse potenti. In vestibulum rhoncus erat, quis aliquet est sollicitudin non. Donec rhoncus dolor ut mattis dignissim. Mauris eu facilisis ligula. Sed magna lorem, tincidunt at dui blandit, dictum placerat felis. Cras et posuere mi, vel euismod ipsum. Cras neque enim, consequat ac arcu sit amet, scelerisque sodales ante. Sed dui erat, fringilla non pellentesque non, faucibus vitae lectus. Pellentesque mauris felis, tincidunt sed faucibus sed, pharetra at dui. Sed pharetra tempor interdum. Praesent tempus pulvinar ipsum cursus faucibus.',
+              },
+            ]
+          })
+          Narrative.create({
+            author: users[1]._id,
+            title: 'I Lied',
+            synopsis: 'Nunc nec turpis in est hendrerit feugiat. Suspendisse tempus maximus leo. Vivamus elit lectus, faucibus sed metus sit amet, vestibulum vestibulum lacus. Ut maximus tempus libero, non faucibus leo luctus ut. Nam ex tellus, finibus at nulla a, efficitur convallis dui. Quisque euismod velit ac laoreet rutrum. Proin efficitur, tortor eget dictum luctus, mi dui imperdiet erat, nec aliquet nisl nisl id dui. Fusce id dictum erat. Aliquam erat volutpat. Vestibulum a viverra nisi, sit amet scelerisque leo. Sed consequat dapibus porta. Ut aliquam libero nec risus semper cursus. Vivamus fermentum vel urna et fringilla.',
+            genre: 'Fantasy',
+            explicit: true,
+            roles: [
+              {
+                name: 'Eva Green',
+                synopsis: 'Vestibulum vitae magna et neque posuere tincidunt in a diam. Nulla molestie quam sit amet nisi molestie finibus. Integer a justo eu justo iaculis ultricies viverra sed ligula. Donec nec bibendum dolor.\n\nCurabitur nisl erat, molestie in purus vitae, suscipit volutpat neque. Mauris pellentesque enim neque, id fermentum augue pretium ut. Praesent feugiat et nunc non tempor. Suspendisse convallis, tortor laoreet ullamcorper congue, elit nibh semper sem, sit amet pharetra ex enim at massa. Fusce sed dolor lobortis, molestie diam in, efficitur metus. Vivamus congue ipsum eget enim fermentum laoreet. Vivamus condimentum luctus ultrices. Duis mauris libero, interdum a augue quis, placerat sodales massa. Suspendisse non lectus dignissim, vehicula nunc eget, aliquet erat.',
+                user: users[1]._id,
+              },
+              {
+                name: 'Mackenzie Zie',
+                synopsis: 'Sed dapibus libero id ullamcorper pharetra. Quisque sed cursus tortor. Suspendisse sit amet nisi id augue pulvinar tincidunt. Praesent metus arcu, placerat a lacus vel, molestie consectetur enim. Proin et augue vitae arcu mollis tincidunt. Pellentesque placerat lectus nunc, nec sagittis leo eleifend in. Maecenas felis nisi, blandit id fringilla sit amet, dictum nec ante. \n\nDonec lobortis venenatis elementum. Suspendisse potenti. In vestibulum rhoncus erat, quis aliquet est sollicitudin non. Donec rhoncus dolor ut mattis dignissim. Mauris eu facilisis ligula. Sed magna lorem, tincidunt at dui blandit, dictum placerat felis. Cras et posuere mi, vel euismod ipsum. Cras neque enim, consequat ac arcu sit amet, scelerisque sodales ante. Sed dui erat, fringilla non pellentesque non, faucibus vitae lectus. Pellentesque mauris felis, tincidunt sed faucibus sed, pharetra at dui. Sed pharetra tempor interdum. Praesent tempus pulvinar ipsum cursus faucibus.',
+              },
+            ]
+          })
         })
           .then(
             console.log("FINISHED POPULATION")
