@@ -1,6 +1,5 @@
 import { success, notFound, authorOrAdmin, validCast } from '../../services/response/'
 import mongoose from 'mongoose'
-import * as paginate from 'mongoose-cursor-paginate'
 import { Narratives } from '.'
 
 const NARRATIVE_PAGE_LIMIT = 10;
@@ -36,10 +35,11 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
 export const index = ({ query }, res, next) => {
  return Narratives.paginate({
     limit: NARRATIVE_PAGE_LIMIT,
-    paginatedField: "createdAt",
-    next: query ? query.next : '',
+    paginatedField: query && query.pagination ? query.pagination : 'createdAt',
+    next: query && query.next ? query.next : '',
   })
-    .then(success(res))
+    .then((narratives) => success(res)({ ...narratives,
+      results: narratives.results.map((narrative) => new Narratives(narrative).view())}))
     .catch(next)
 }
 

@@ -6,6 +6,10 @@ export const Roles = new Schema({
     type: String,
     required: true,
   },
+  gender: {
+    type: String,
+    required: true,
+  },
   synopsis: {
     type: String,
     required: true,
