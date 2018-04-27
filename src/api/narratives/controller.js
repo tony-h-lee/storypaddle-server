@@ -35,6 +35,7 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
 export const index = ({ query }, res, next) => {
  return Narratives.paginate({
     limit: NARRATIVE_PAGE_LIMIT,
+    author: query && query.author ? query.author : '',
     paginatedField: query && query.pagination ? query.pagination : 'createdAt',
     next: query && query.next ? query.next : '',
   })
