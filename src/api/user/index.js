@@ -10,8 +10,6 @@ import {
   update,
   updatePassword,
   destroy,
-  showJoinedNarratives,
-  showOwnedNarratives
 } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
@@ -47,31 +45,6 @@ router.get('/me',
   token({ required: true }),
   showMe)
 
-
-/**
- * @api {get} /users/me/joined Retrieve current user's joined narratives
- * @apiName RetrieveCurrentUserJoinedNarratives
- * @apiGroup User
- * @apiPermission user
- * @apiParam {String} access_token User access_token.
- * @apiSuccess {Object} user User's data.
- */
-router.get('/me/joined/',
-  token({ required: true }),
-  showJoinedNarratives)
-
-
-/**
- * @api {get} /users/me/owned Retrieve current user's owned narratives
- * @apiName RetrieveCurrentUserOwnedNarratives
- * @apiGroup User
- * @apiPermission user
- * @apiParam {String} access_token User access_token.
- * @apiSuccess {Object} user User's data.
- */
-router.get('/me/owned/',
-  token({ required: true }),
-  showOwnedNarratives)
 
 /**
  * @api {get} /users/:id Retrieve user
