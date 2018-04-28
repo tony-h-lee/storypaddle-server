@@ -33,11 +33,16 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
 }
 
 export const index = ({ query }, res, next) => {
- return Narratives.paginate({
+  const authorQuery = query && query.author ? { author: query.author } : {};
+
+  // Add separate queries here to destruct into one final query
+  const fullQuery = { ...authorQuery }
+  return Narratives.paginate({
     limit: NARRATIVE_PAGE_LIMIT,
-    author: query && query.author ? query.author : '',
+    query: fullQuery,
     paginatedField: query && query.pagination ? query.pagination : 'createdAt',
     next: query && query.next ? query.next : '',
+    previous: query && query.previous ? query.previous : '',
   })
     .then((narratives) => success(res)({ ...narratives,
       results: narratives.results.map((narrative) => new Narratives(narrative).view())}))
