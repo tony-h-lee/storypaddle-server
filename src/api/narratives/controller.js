@@ -33,10 +33,23 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
 }
 
 export const index = ({ query }, res, next) => {
-  const authorQuery = query && query.author ? { author: query.author } : {};
+
+  // Get narratives created by a specific author
+  // - Requires author query : ?author=userId
+  const authorQuery = query && query.author ? { author: query.author } : {}
+
+  // Get narratives where a user is assigned a role and the narrative author is not the user
+  // - Requires user query : ?&user=userId
+  const roleQuery = query && query.user ? { $and: [{ author: { $ne: query.user }},
+      {roles: { $elemMatch: { user: query.user }}}]
+  }: {}
 
   // Add separate queries here to destruct into one final query
-  const fullQuery = { ...authorQuery }
+  const fullQuery = {
+    ...authorQuery,
+    ...roleQuery,
+  }
+
   return Narratives.paginate({
     limit: NARRATIVE_PAGE_LIMIT,
     query: fullQuery,
