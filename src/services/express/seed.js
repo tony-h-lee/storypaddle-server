@@ -47,14 +47,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 2',
@@ -81,14 +73,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 3',
@@ -115,14 +99,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 4',
@@ -149,14 +125,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 5',
@@ -183,14 +151,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 6',
@@ -217,14 +177,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 7',
@@ -251,14 +203,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 8',
@@ -285,14 +229,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 9',
@@ -319,14 +255,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 10',
@@ -353,14 +281,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 11',
@@ -387,14 +307,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
               Narrative.create({
                 author: users[2]._id,
                 title: 'The Last Marebender 12',
@@ -421,14 +333,6 @@ User.find({}).remove()
                   }
                 ]
               })
-                .then((narrative) => {
-                  User.findOne({_id: users[2]._id})
-                    .then((user) => {
-                      user.ownedNarratives.push(narrative.id)
-                      user.save()
-                      return
-                    })
-                })
                 .then(() => {
                   console.log('finished populating narratives');
                 });
