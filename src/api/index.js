@@ -3,6 +3,8 @@ import user from './user'
 import auth from './auth'
 import passwordReset from './password-reset'
 import narratives from './narratives'
+import comments from './comments'
+import scenes from './scenes'
 
 const router = new Router()
 
@@ -32,6 +34,8 @@ const router = new Router()
 router.use('/users', user)
 router.use('/auth', auth)
 router.use('/narratives', narratives)
+router.use('/scenes', scenes)
+router.use('/comments', comments)
 router.use('/password-reset', passwordReset)
 
 export default router

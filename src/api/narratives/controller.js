@@ -1,16 +1,15 @@
 import { success, notFound, authorOrAdmin, validCast } from '../../services/response/'
 import mongoose from 'mongoose'
-import { Narratives } from '.'
+import { Narratives, Role } from '.'
+import Scenes from '../scenes/model'
 
 const setRoleUsers = (roles, user) => (
   roles.map((role, index) => {
     if (index === 0) {
-      role.user = new mongoose.Types.ObjectId(user.id)
+      role.user = mongoose.Types.ObjectId(user.id)
     }
-    else role.user = null
     return role
-    }
-  )
+  })
 )
 
 export const create = ({ user, bodymen: { body } }, res, next) => {
@@ -21,8 +20,13 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
     return res.status(400).end()
   body.roles = setRoleUsers(body.roles, user)
   return Narratives.create({...body, author: user.id})
-    .then((narratives) => narratives.view())
-    .then(success(res, 201))
+    .then((narratives) => {
+      Scenes.create({narrative: narratives.id, author: user.id})
+        .then((scenes) => narratives.update({scene: scenes.id}))
+        .catch(next)
+      return narratives.view()
+    })
+    .then((narratives) => success(res, 201)(narratives))
     .catch((err) => validCast(res, err, next))
 }
 
@@ -47,10 +51,13 @@ export const index = ({ query }, res, next) => {
     ...roleQuery,
   }
 
+  const isValidFieldAndReturn = query &&
+  (query.paginatedField === 'updatedAt' || query.paginatedField === 'createdAt') ? query.paginatedField : 'createdAt'
+
   return Narratives.paginate({
     limit: NARRATIVE_PAGE_LIMIT,
     query: fullQuery,
-    paginatedField: 'createdAt',
+    paginatedField: isValidFieldAndReturn,
     next: query && query.next ? query.next : '',
     previous: query && query.previous ? query.previous : '',
   })
@@ -93,7 +100,9 @@ export const updateRole = ({ user, body, params }, res, next) => {
         }
         return narratives ? Object.assign(narratives, {
           ...narratives, roles: Object.assign(narratives.roles, narratives.roles.map((role) => {
-            if (role.id === body.roleId) role.user = user.id;
+            if (role.id === body.roleId)  {
+              role.user = user.id;
+            }
             return role;
           }))
         }).save() : null
@@ -111,7 +120,9 @@ export const updateRole = ({ user, body, params }, res, next) => {
           })) {
           return narratives ? Object.assign(narratives, {
             ...narratives, roles: Object.assign(narratives.roles, narratives.roles.map((role) => {
-              if (role.user && role.user.equals(user.id)) return role.user = null;
+              if (role.user && role.user.equals(user.id)) {
+                role.user = null;
+              }
               return role;
             }))
           }).save() : null

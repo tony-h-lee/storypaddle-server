@@ -31,6 +31,10 @@ const narrativesSchema = new Schema({
     ref: 'User',
     required: true
   },
+  scene: {
+    type: Schema.ObjectId,
+    ref: 'Scenes',
+  },
   title: {
     type: String,
     required: true,
@@ -76,6 +80,7 @@ narrativesSchema.methods = {
       explicit: this.explicit,
       roles: this.roles,
       createdAt: this.createdAt,
+      scene: this.scene,
     }
 
     return full ? {
@@ -87,15 +92,8 @@ narrativesSchema.methods = {
 
 narrativesSchema.plugin(paginate);
 
-narrativesSchema.pre('remove', function(next) {
-  mongoose.model('User').update(
-    {},
-    { $pull: { joinedNarratives: this.id}},
-    { multi: true },
-    next);
-});
-
 const model = mongoose.model('Narratives', narrativesSchema)
 
 export const schema = model.schema
+export const Role = mongoose.model('Role', Roles)
 export default model
