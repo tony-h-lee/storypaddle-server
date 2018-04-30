@@ -2,8 +2,6 @@ import { success, notFound, authorOrAdmin, validCast } from '../../services/resp
 import mongoose from 'mongoose'
 import { Narratives } from '.'
 
-const NARRATIVE_PAGE_LIMIT = 10;
-
 const setRoleUsers = (roles, user) => (
   roles.map((role, index) => {
     if (index === 0) {
@@ -29,6 +27,9 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
 }
 
 export const index = ({ query }, res, next) => {
+
+  // Set a limit on how many narratives to retrieve
+  const NARRATIVE_PAGE_LIMIT = query.limit && +query.limit <= 20 ? +query.limit : 10;
 
   // Get narratives created by a specific author
   // - Requires author query : ?author=userId
@@ -58,9 +59,10 @@ export const index = ({ query }, res, next) => {
     .catch(next)
 }
 
-
+// Need to implement timer or ip tracking to prevent view increment abuse
+// Simple view increment for now
 export const show = ({ params }, res, next) =>
-  Narratives.findById(params.id)
+  Narratives.findOneAndUpdate({_id: params.id}, {$inc: {views:1}}, {new:true})
     .then(notFound(res))
     .then((narratives) => narratives ? narratives.view() : null)
     .then(success(res))

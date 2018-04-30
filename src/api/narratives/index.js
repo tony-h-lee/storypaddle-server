@@ -35,7 +35,6 @@ router.post('/',
  * @apiName RetrieveNarratives
  * @apiGroup Narratives
  * @apiUse listParams
- * @apiSuccess {Number} count Total amount of narratives.
  * @apiSuccess {Object[]} rows List of narratives.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */

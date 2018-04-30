@@ -47,6 +47,10 @@ const narrativesSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  views: {
+    type: Number,
+    default: 1,
+  },
   roles: {
     type: [Roles],
     validate: [minRolesRequired, 'Narrative requires at least 2 roles']
@@ -76,6 +80,7 @@ narrativesSchema.methods = {
       explicit: this.explicit,
       roles: this.roles,
       createdAt: this.createdAt,
+      views: this.views,
     }
 
     return full ? {
