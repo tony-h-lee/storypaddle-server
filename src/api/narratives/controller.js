@@ -39,7 +39,7 @@ export const index = ({ query }, res, next) => {
   // - Requires user query : ?&user=userId
   const roleQuery = query && query.user ? { $and: [{ author: { $ne: query.user }},
       {roles: { $elemMatch: { user: query.user }}}]
-  }: {}
+    }: {}
 
   // Add separate queries here to destruct into one final query
   const fullQuery = {
@@ -50,7 +50,7 @@ export const index = ({ query }, res, next) => {
   return Narratives.paginate({
     limit: NARRATIVE_PAGE_LIMIT,
     query: fullQuery,
-    paginatedField: query && query.pagination ? query.pagination : 'createdAt',
+    paginatedField: 'createdAt',
     next: query && query.next ? query.next : '',
     previous: query && query.previous ? query.previous : '',
   })
@@ -59,10 +59,11 @@ export const index = ({ query }, res, next) => {
     .catch(next)
 }
 
+
 // Need to implement timer or ip tracking to prevent view increment abuse
 // Simple view increment for now
 export const show = ({ params }, res, next) =>
-  Narratives.findOneAndUpdate({_id: params.id}, {$inc: {views:1}}, {new:true})
+  Narratives.findById(params.id)
     .then(notFound(res))
     .then((narratives) => narratives ? narratives.view() : null)
     .then(success(res))
