@@ -9,8 +9,7 @@ export const create = ({ user, bodymen: { body } }, res, next) =>
 
 export const show = ({ params }, res, next) =>
   Scenes.findById(params.id)
-    .populate('author')
-    .populate('narrative')
+    .populate('narrative', '-updatedAt -__v')
     .then(notFound(res))
     .then((scenes) => scenes ? scenes.view() : null)
     .then(success(res))

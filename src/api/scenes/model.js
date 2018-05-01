@@ -24,7 +24,7 @@ scenesSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      author: this.author.view(full),
+      author: this.author,
       narrative: this.narrative,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
