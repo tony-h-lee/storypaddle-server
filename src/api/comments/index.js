@@ -22,7 +22,7 @@ const { type, text, adjective, character, scene } = schema.tree
  * @apiSuccess {Object} comments Comments's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Comments not found.
- * @apiError 401 user access only.
+ * @apiError 401 user access only that is a participating user.
  */
 router.post('/',
   token({ required: true }),

@@ -1,27 +1,27 @@
 import { success, notFound, authorOrAdmin } from '../../services/response/'
-import mongoose from 'mongoose'
-import { Comments } from '.'
 import Scenes from '../scenes/model'
+import { Comments } from '.'
 
 export const create = ({ user, bodymen: { body } }, res, next) => {
   // Remove parenthesis from adjective if any
-  let newAdjective = body.adjective ? body.adjective.replace(/\(|\)/g,'') : null;
-  let newBody = Object.assign(body, {...body, adjective: newAdjective, scene: mongoose.Types.ObjectId(body.scene) })
+  body.adjective = body.adjective ? body.adjective.replace(/\(|\)/g,'') : null;
 
-  console.log(newBody)
-
-  console.log({...body})
-
-
-  // Check if user has a role in this narrative to allow a post
-  /*
+  // Check if user is a participant in narrative to allow post
   Scenes.findById(body.scene)
     .populate('narrative')
-    .then((scene) => console.log(scene))
-    */
-  return Comments.create({ newBody, author: user.id })
-    .then((comments) => comments.view())
-    .then(success(res, 201))
+    .then((scene) => {
+      if (scene.narrative.roles.some((role) => {
+          if (role.user) return role.user.equals(user.id)
+          return false
+        })) {
+        // Found a matching role so post the comment
+        return Comments.create({ ...body, author: user.id })
+          .then((comments) => comments.view())
+          .then(success(res, 201))
+          .catch(next)
+      }
+      return res.status(401).end()
+    })
     .catch(next)
 }
 

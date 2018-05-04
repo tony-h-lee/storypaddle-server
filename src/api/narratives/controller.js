@@ -17,7 +17,7 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
   // with empty users
   let nameArray = body.roles.map((role) => role.name)
   if((new Set(nameArray)).size !== nameArray.length)
-    return res.status(400).end()
+    return res.status(401).end()
   body.roles = setRoleUsers(body.roles, user)
   return Narratives.create({...body, author: user.id})
     .then((narratives) => {
@@ -95,7 +95,7 @@ export const updateRole = ({ user, body, params }, res, next) => {
             if (role.user) return role.user.equals(user.id)
             return false
           })) {
-          res.status(400).end()
+          res.status(401).end()
           return false
         }
         return narratives ? Object.assign(narratives, {
