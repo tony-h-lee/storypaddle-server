@@ -7,7 +7,7 @@ import { schema } from './model'
 export Comments, { schema } from './model'
 
 const router = new Router()
-const { type, text, adjective, scene } = schema.tree
+const { type, text, adjective, character, scene } = schema.tree
 
 /**
  * @api {post} /comments Create comments
@@ -26,7 +26,7 @@ const { type, text, adjective, scene } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ type, text, adjective, scene }),
+  body({ type, text, adjective, character, scene }),
   create)
 
 /**
@@ -41,8 +41,6 @@ router.post('/',
  * @apiError 401 user access only.
  */
 router.get('/',
-  token({ required: true }),
-  query(),
   index)
 
 /**

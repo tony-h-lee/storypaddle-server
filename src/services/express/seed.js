@@ -1,7 +1,10 @@
 import User from '../../api/user/model';
 import Narrative from '../../api/narratives/model';
 import Scene from '../../api/scenes/model';
+import Comments from '../../api/comments/model'
 
+Scene.find({}).remove()
+Comments.find({}).remove()
 
 // Basic Populate, 2 Users, 1 Narrative and Create and Join
 
@@ -53,7 +56,15 @@ User.find({}).remove()
                     author: users[2]._id,
                     narrative: narrative._id
                   })
-                    .then((scene) => narrative.update({scene: scene._id}))
+                    .then((scene) => {
+                    Comments.create({
+                      type: 'narration',
+                      author: users[2]._id,
+                      scene: scene._id,
+                      text: 'text post',
+                    })
+                    return narrative.update({scene: scene._id})
+                    })
                 })
                 .then(() => {
                   console.log('finished populating narratives');

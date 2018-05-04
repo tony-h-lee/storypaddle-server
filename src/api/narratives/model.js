@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-const paginate = require('mongoose-cursor-paginate');
+import paginate from 'mongoose-cursor-paginate'
 
 export const Roles = new Schema({
   name: {

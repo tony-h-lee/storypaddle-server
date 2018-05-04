@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import paginate from 'mongoose-cursor-paginate'
 
 const commentsSchema = new Schema({
   author: {
@@ -16,6 +17,9 @@ const commentsSchema = new Schema({
     required: true
   },
   adjective: {
+    type: String
+  },
+  character: {
     type: String
   },
   scene: {
@@ -36,21 +40,23 @@ commentsSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      author: this.author.view(full),
+      author: this.author,
       type: this.type,
       text: this.text,
       adjective: this.adjective,
+      character: this.character,
       scene: this.scene,
       createdAt: this.createdAt,
-      updatedAt: this.updatedAt
     }
 
     return full ? {
-      ...view
-      // add properties for a full view
+      ...view,
+        updatedAt: this.updatedAt
     } : view
   }
 }
+
+commentsSchema.plugin(paginate);
 
 const model = mongoose.model('Comments', commentsSchema)
 
