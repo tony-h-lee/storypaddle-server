@@ -147,6 +147,186 @@ User.find({}).remove()
                         scene: scene._id,
                         text: 'Post 15: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
                       })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 1: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 2: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 3: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 4: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 5: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 6: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 7: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 8: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 9: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 10: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 11: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 12: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 13: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 14: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 15: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 1: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 2: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 3: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 4: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 5: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 6: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 7: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 8: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 9: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 10: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 11: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 12: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 13: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 14: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
+                      Comments.create({
+                        type: 'narration',
+                        author: users[2]._id,
+                        scene: scene._id,
+                        text: 'Post 15: It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. It was three in the morning. ',
+                      })
                     return narrative.update({scene: scene._id})
                     })
                 })
