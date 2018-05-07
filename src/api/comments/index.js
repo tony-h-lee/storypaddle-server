@@ -75,7 +75,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ type, text, adjective, scene }),
+  body({ text }),
   update)
 
 /**
