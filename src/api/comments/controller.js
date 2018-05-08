@@ -59,11 +59,12 @@ export const show = ({ params }, res, next) =>
 
 export const update = ({ user, bodymen: { body }, params }, res, next) =>
   Comments.findById(params.id)
-    .then(notFound(res))
     .populate('scene')
+    .then(notFound(res))
     .then((comments) => {
-      if (user.id !== comments.author || user.id !== comments.scene.author) {
-        return res.status(401).end()
+      if (!comments.author.equals(user.id) && !comments.scene.author.equals(user.id)) {
+        res.status(401).end()
+        return null
       }
       return comments
     })
@@ -83,11 +84,12 @@ export const destroy = ({ user, body, params }, res, next) => {
         })) {
         // Found a matching role so delete the comment
         return Comments.findById(params.id)
-          .then(notFound(res))
           .populate('scene')
+          .then(notFound(res))
           .then((comments) => {
-            if (user.id !== comments.author || user.id !== comments.scene.author) {
-              return res.status(401).end()
+            if (!comments.author.equals(user.id) && !comments.scene.author.equals(user.id)) {
+              res.status(401).end()
+              return null
             }
             return comments
           })
