@@ -59,8 +59,8 @@ export const show = ({ params }, res, next) =>
 
 export const update = ({ user, bodymen: { body }, params }, res, next) =>
   Comments.findById(params.id)
-    .populate('scene')
     .then(notFound(res))
+    .populate('scene')
     .then((comments) => {
       if (user.id !== comments.author || user.id !== comments.scene.author) {
         return res.status(401).end()
@@ -73,7 +73,7 @@ export const update = ({ user, bodymen: { body }, params }, res, next) =>
     .catch(next)
 
 export const destroy = ({ user, body, params }, res, next) => {
-  // Check if user is a participant in narrative to allow post
+  // Check if user is a participant in narrative to allow deletion
   Scenes.findById(body.sceneId)
     .populate('narrative')
     .then((scene) => {
@@ -84,7 +84,13 @@ export const destroy = ({ user, body, params }, res, next) => {
         // Found a matching role so delete the comment
         return Comments.findById(params.id)
           .then(notFound(res))
-          .then(authorOrAdmin(res, user, 'author'))
+          .populate('scene')
+          .then((comments) => {
+            if (user.id !== comments.author || user.id !== comments.scene.author) {
+              return res.status(401).end()
+            }
+            return comments
+          })
           .then((comments) => comments ? comments.remove() : null)
           .then(success(res, 204))
           .catch(next)
