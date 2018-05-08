@@ -59,8 +59,14 @@ export const show = ({ params }, res, next) =>
 
 export const update = ({ user, bodymen: { body }, params }, res, next) =>
   Comments.findById(params.id)
+    .populate('scene')
     .then(notFound(res))
-    .then(authorOrAdmin(res, user, 'author'))
+    .then((comments) => {
+      if (user.id !== comments.author || user.id !== comments.scene.author) {
+        return res.status(401).end()
+      }
+      return comments
+    })
     .then((comments) => comments ? Object.assign(comments, body).save() : null)
     .then((comments) => comments ? comments.view() : null)
     .then(success(res))
