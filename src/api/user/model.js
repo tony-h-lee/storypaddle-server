@@ -5,7 +5,7 @@ import mongooseKeywords from 'mongoose-keywords'
 import { env } from '../../config'
 
 const roles = ['user', 'admin']
-const accountTypes = ['basic', 'member']
+const accountTypes = ['Basic', 'Member']
 
 const userSchema = new Schema({
   email: {
@@ -19,7 +19,7 @@ const userSchema = new Schema({
   accountType: {
     type: String,
     enum: accountTypes,
-    default: 'basic'
+    default: 'Basic'
   },
   password: {
     type: String,
@@ -63,10 +63,10 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     let view = {}
-    let fields = ['id', 'email', 'picture', 'accountType' ]
+    let fields = ['id', 'email', 'picture', 'accountType', 'createdAt' ]
 
     if (full) {
-      fields = [...fields, 'createdAt', 'role', ]
+      fields = [...fields, 'role', ]
     }
 
     fields.forEach((field) => { view[field] = this[field] })
