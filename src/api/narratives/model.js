@@ -90,6 +90,8 @@ narrativesSchema.methods = {
   }
 }
 
+narrativesSchema.index({'title': 'text'});
+
 narrativesSchema.plugin(paginate);
 
 const model = mongoose.model('Narratives', narrativesSchema)

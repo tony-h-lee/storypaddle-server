@@ -31,39 +31,50 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
 }
 
 export const index = ({ query }, res, next) => {
-
   // Set a limit on how many narratives to retrieve
   const NARRATIVE_PAGE_LIMIT = query.limit && +query.limit <= 20 ? +query.limit : 10;
 
-  // Get narratives created by a specific author
-  // - Requires author query : ?author=userId
-  const authorQuery = query && query.author ? { author: query.author } : {}
+  if (query && query.search) {
+    return Narratives.find({ $text: { $search: query.search }})
+      .select({ "score": { "$meta": "textScore" } })
+      .sort({ "score": { "$meta": "textScore" } })
+      .limit(+query.limit)
+      .then(success(res))
+      .catch(next)
+  } else {
+    // Get narratives created by a specific author
+    // - Requires author query : ?author=userId
+    const authorQuery = query && query.author ? {author: query.author} : {}
 
-  // Get narratives where a user is assigned a role and the narrative author is not the user
-  // - Requires user query : ?&user=userId
-  const roleQuery = query && query.user ? { $and: [{ author: { $ne: query.user }},
-      {roles: { $elemMatch: { user: query.user }}}]
-    }: {}
+    // Get narratives where a user is assigned a role and the narrative author is not the user
+    // - Requires user query : ?&user=userId
+    const roleQuery = query && query.user ? {
+        $and: [{author: {$ne: query.user}},
+          {roles: {$elemMatch: {user: query.user}}}]
+      } : {}
 
-  // Add separate queries here to destruct into one final query
-  const fullQuery = {
-    ...authorQuery,
-    ...roleQuery,
+    // Add separate queries here to destruct into one final query
+    const fullQuery = {
+      ...authorQuery,
+      ...roleQuery,
+    }
+
+    const isValidFieldAndReturn = query &&
+    (query.paginatedField === 'updatedAt' || query.paginatedField === 'createdAt') ? query.paginatedField : 'createdAt'
+
+    return Narratives.paginate({
+      limit: NARRATIVE_PAGE_LIMIT,
+      query: fullQuery,
+      paginatedField: isValidFieldAndReturn,
+      next: query && query.next ? query.next : '',
+      previous: query && query.previous ? query.previous : '',
+    })
+      .then((narratives) => success(res)({
+        ...narratives,
+        results: narratives.results.map((narrative) => new Narratives(narrative).view())
+      }))
+      .catch(next)
   }
-
-  const isValidFieldAndReturn = query &&
-  (query.paginatedField === 'updatedAt' || query.paginatedField === 'createdAt') ? query.paginatedField : 'createdAt'
-
-  return Narratives.paginate({
-    limit: NARRATIVE_PAGE_LIMIT,
-    query: fullQuery,
-    paginatedField: isValidFieldAndReturn,
-    next: query && query.next ? query.next : '',
-    previous: query && query.previous ? query.previous : '',
-  })
-    .then((narratives) => success(res)({ ...narratives,
-      results: narratives.results.map((narrative) => new Narratives(narrative).view())}))
-    .catch(next)
 }
 
 
